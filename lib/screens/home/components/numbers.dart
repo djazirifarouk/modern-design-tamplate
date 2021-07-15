@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
+import '../../../responsive.dart';
 
 class Achievements extends StatelessWidget {
   const Achievements({
@@ -9,15 +10,87 @@ class Achievements extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Numbers(amount: achievement_numbers_1, title: achievement_1),
-        Numbers(amount: achievement_numbers_2, title: achievement_2),
-        Numbers(amount: achievement_numbers_3, title: achievement_3),
-        Numbers(amount: achievement_numbers_4, title: achievement_4),
-      ],
+    final Size _size = MediaQuery.of(context).size;
+    return Responsive(
+      mobile: Responsive.isMobile(context)
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Numbers(amount: achievement_numbers_1, title: achievement_1),
+                Numbers(amount: achievement_numbers_2, title: achievement_2),
+                Numbers(amount: achievement_numbers_3, title: achievement_3),
+                Numbers(amount: achievement_numbers_4, title: achievement_4),
+              ],
+            )
+          : Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Numbers(
+                        amount: achievement_numbers_1, title: achievement_1),
+                    Numbers(
+                        amount: achievement_numbers_2, title: achievement_2),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Numbers(
+                        amount: achievement_numbers_3, title: achievement_3),
+                    Numbers(
+                        amount: achievement_numbers_4, title: achievement_4),
+                  ],
+                ),
+              ],
+            ),
+      tablet: Responsive.isTablet(context)
+          ? Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Numbers(
+                        amount: achievement_numbers_1, title: achievement_1),
+                    Numbers(
+                        amount: achievement_numbers_2, title: achievement_2),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Numbers(
+                        amount: achievement_numbers_3, title: achievement_3),
+                    Numbers(
+                        amount: achievement_numbers_4, title: achievement_4),
+                  ],
+                ),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Numbers(amount: achievement_numbers_1, title: achievement_1),
+                Numbers(amount: achievement_numbers_2, title: achievement_2),
+                Numbers(amount: achievement_numbers_3, title: achievement_3),
+                Numbers(amount: achievement_numbers_4, title: achievement_4),
+              ],
+            ),
+      desktop: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Numbers(amount: achievement_numbers_1, title: achievement_1),
+          Numbers(amount: achievement_numbers_2, title: achievement_2),
+          Numbers(amount: achievement_numbers_3, title: achievement_3),
+          Numbers(amount: achievement_numbers_4, title: achievement_4),
+        ],
+      ),
     );
   }
 }

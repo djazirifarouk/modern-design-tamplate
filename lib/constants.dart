@@ -12,6 +12,8 @@ const defalutPadding = 20.0;
 const defaultDuration = Duration(seconds: 3); // We use it in animation
 const maxWidth = 1440.0; // Max Width of our Web App
 
+const splashcreen_animation = "assets/images/SplashScreen.json";
+
 /***************** Template Values *****************/
 
 /******* Side Menu *******/

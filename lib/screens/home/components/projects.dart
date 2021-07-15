@@ -3,6 +3,7 @@ import 'package:moder_design_app/models/projects.dart';
 import 'package:moder_design_app/screens/main/components/launch_urls.dart';
 
 import '../../../constants.dart';
+import '../../../responsive.dart';
 
 class Projects extends StatelessWidget {
   const Projects({
@@ -11,9 +12,32 @@ class Projects extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+    return Responsive(
+      mobile: Responsive.isMobile(context)
+          ? ProjectGridBuilder(count: 1)
+          : ProjectGridBuilder(count: 2),
+      tablet: Responsive.isTablet(context)
+          ? ProjectGridBuilder(count: 2)
+          : ProjectGridBuilder(),
+      desktop: ProjectGridBuilder(),
+    );
+  }
+}
+
+class ProjectGridBuilder extends StatelessWidget {
+  const ProjectGridBuilder({
+    Key? key,
+    this.count = 3,
+  }) : super(key: key);
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
     return GridView.builder(
         gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: count),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemCount: demo_projects.length,

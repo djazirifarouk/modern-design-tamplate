@@ -67,9 +67,14 @@ class LaunchDownload2 extends StatelessWidget {
   const LaunchDownload2({
     Key? key,
     required this.url,
+    this.fontsize = 16.0,
+    this.width = 200.0,
+    this.height = 50,
   }) : super(key: key);
 
   final String url;
+  final double fontsize;
+  final double height, width;
 
   @override
   Widget build(BuildContext context) {
@@ -77,20 +82,21 @@ class LaunchDownload2 extends StatelessWidget {
         uri: Uri.parse(url),
         target: LinkTarget.blank,
         builder: (context, openLink) {
-          return ElevatedButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                    horizontal: defalutPadding * 2, vertical: defalutPadding),
-                backgroundColor: primaryColor),
-            child: GestureDetector(
-              onTap: openLink,
+          return Container(
+            height: 50,
+            width: 200,
+            child: ElevatedButton(
+              onPressed: openLink,
+              style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: defalutPadding * 2, vertical: defalutPadding),
+                  backgroundColor: primaryColor),
               child: Text(
                 "Download CV",
                 style: Theme.of(context)
                     .textTheme
                     .subtitle1!
-                    .copyWith(color: darkColor),
+                    .copyWith(color: darkColor, fontSize: fontsize),
               ),
             ),
           );

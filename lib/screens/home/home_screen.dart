@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moder_design_app/constants.dart';
 import 'package:moder_design_app/screens/main/main_screen.dart';
-
 import 'components/home_banner.dart';
 import 'components/numbers.dart';
 import 'components/projects.dart';

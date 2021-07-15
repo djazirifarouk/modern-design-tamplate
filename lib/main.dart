@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:moder_design_app/constants.dart';
+import 'package:moder_design_app/controllers/MenuController.dart';
 import 'package:moder_design_app/screens/home/home_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +30,56 @@ class MyApp extends StatelessWidget {
               bodyText2: TextStyle(color: bodyTextColor),
             ),
       ),
-      home: HomeScreen(),
+      home: Splash(),
+    );
+  }
+}
+
+class Splash extends StatefulWidget {
+  const Splash({Key? key}) : super(key: key);
+
+  @override
+  _SplashState createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  bool _loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        _loading = false;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _loading
+        ? Loading()
+        : MultiProvider(
+            providers: [
+              ChangeNotifierProvider(
+                create: (context) => MenuController(),
+              )
+            ],
+            child: HomeScreen(),
+          );
+  }
+}
+
+class Loading extends StatelessWidget {
+  const Loading({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: bgColor,
+      body: Center(child: Lottie.asset(splashcreen_animation)),
     );
   }
 }

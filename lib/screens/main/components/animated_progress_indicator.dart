@@ -20,6 +20,7 @@ class AnimatedCircularProgressIndicator extends StatelessWidget {
           aspectRatio: 1,
           child: TweenAnimationBuilder(
             tween: Tween<double>(begin: 0, end: percentage),
+            curve: Curves.decelerate,
             duration: defaultDuration,
             builder: (context, double value, child) => Stack(
               fit: StackFit.expand,
