@@ -61,7 +61,7 @@ class HomeBanner extends StatelessWidget {
                                     ? 30
                                     : _size.width <= 500 && _size.width > 450
                                         ? 30
-                                        : 20,
+                                        : 18,
                       ),
                 ),
                 MyBuildAnimatedText(
@@ -71,28 +71,28 @@ class HomeBanner extends StatelessWidget {
                           ? 18
                           : _size.width <= 715 && _size.width >= 500
                               ? 15
-                              : 12,
+                              : 11,
                 ),
                 if (Responsive.isDesktop(context))
                   SizedBox(height: defalutPadding),
                 Responsive(
                   mobile: LaunchDownload2(
                     url: cv_url,
-                    width: Responsive.isMobile(context) ? 80 : 200,
-                    height: Responsive.isMobile(context) ? 20 : 50,
-                    fontsize: 16,
+                    width: Responsive.isMobile(context) ? 150 : 200,
+                    height: Responsive.isMobile(context) ? 37 : 50,
+                    fontsize: Responsive.isMobile(context) ? 10 : 16,
                   ),
                   tablet: LaunchDownload2(
                     url: cv_url,
                     width: Responsive.isTablet(context) ? 100 : 200,
                     height: Responsive.isTablet(context) ? 25 : 50,
-                    fontsize: 16,
+                    fontsize: Responsive.isTablet(context) ? 16 : 16,
                   ),
                   desktop: LaunchDownload2(
                     url: cv_url,
-                    width: Responsive.isTablet(context) ? 100 : 200,
-                    height: Responsive.isTablet(context) ? 25 : 50,
-                    fontsize: 16,
+                    width: Responsive.isDesktop(context) ? 200 : 200,
+                    height: Responsive.isDesktop(context) ? 50 : 50,
+                    fontsize: Responsive.isDesktop(context) ? 16 : 16,
                   ),
                 ),
               ],

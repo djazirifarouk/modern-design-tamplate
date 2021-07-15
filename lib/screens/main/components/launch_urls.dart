@@ -83,8 +83,8 @@ class LaunchDownload2 extends StatelessWidget {
         target: LinkTarget.blank,
         builder: (context, openLink) {
           return Container(
-            height: 50,
-            width: 200,
+            height: height,
+            width: width,
             child: ElevatedButton(
               onPressed: openLink,
               style: TextButton.styleFrom(
@@ -93,10 +93,11 @@ class LaunchDownload2 extends StatelessWidget {
                   backgroundColor: primaryColor),
               child: Text(
                 "Download CV",
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle1!
-                    .copyWith(color: darkColor, fontSize: fontsize),
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                    color: darkColor,
+                    fontSize: fontsize,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           );
