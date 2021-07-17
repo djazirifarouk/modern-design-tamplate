@@ -19,7 +19,9 @@ class HomeBanner extends StatelessWidget {
           ? 3
           : _size.width <= 950 && _size.width >= 600
               ? 2.6
-              : 1.8,
+              : _size.width < 600
+                  ? 2
+                  : 2,
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -28,14 +30,14 @@ class HomeBanner extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           Container(color: darkColor.withOpacity(0.8)),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: defalutPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (!Responsive.isDesktop(context))
-                  IconButton(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (!Responsive.isDesktop(context))
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: defalutPadding / 4, top: defalutPadding),
+                  child: IconButton(
                     onPressed: context.read<MenuController>().controlMenu,
                     icon: Icon(Icons.menu),
                     iconSize: _size.width > 1100
@@ -45,58 +47,68 @@ class HomeBanner extends StatelessWidget {
                             : _size.width <= 715 && _size.width > 500
                                 ? 25
                                 : _size.width <= 500 && _size.width > 450
-                                    ? 20
-                                    : 15,
+                                    ? 25
+                                    : 25,
                   ),
-                Text(
-                  banner_title,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: _size.width > 1100
-                            ? 50
-                            : _size.width <= 1100 && _size.width > 715
-                                ? 40
-                                : _size.width <= 715 && _size.width > 500
-                                    ? 30
-                                    : _size.width <= 500 && _size.width > 450
+                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: defalutPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      banner_title,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: _size.width > 1100
+                                ? 50
+                                : _size.width <= 1100 && _size.width > 715
+                                    ? 40
+                                    : _size.width <= 715 && _size.width > 500
                                         ? 30
-                                        : 18,
-                      ),
-                ),
-                MyBuildAnimatedText(
-                  text_size: _size.width >= 715
-                      ? 20
-                      : _size.width <= 715 && _size.width >= 500
-                          ? 18
+                                        : _size.width <= 500 &&
+                                                _size.width > 450
+                                            ? 30
+                                            : 18,
+                          ),
+                    ),
+                    MyBuildAnimatedText(
+                      text_size: _size.width >= 715
+                          ? 20
                           : _size.width <= 715 && _size.width >= 500
-                              ? 15
-                              : 11,
+                              ? 18
+                              : _size.width <= 715 && _size.width >= 500
+                                  ? 15
+                                  : 11,
+                    ),
+                    if (Responsive.isDesktop(context))
+                      SizedBox(height: defalutPadding),
+                    Responsive(
+                      mobile: LaunchDownload2(
+                        url: cv_url,
+                        width: Responsive.isMobile(context) ? 150 : 200,
+                        height: Responsive.isMobile(context) ? 40 : 50,
+                        fontsize: Responsive.isMobile(context) ? 14 : 16,
+                      ),
+                      tablet: LaunchDownload2(
+                        url: cv_url,
+                        width: Responsive.isTablet(context) ? 100 : 200,
+                        height: Responsive.isTablet(context) ? 25 : 50,
+                        fontsize: Responsive.isTablet(context) ? 16 : 16,
+                      ),
+                      desktop: LaunchDownload2(
+                        url: cv_url,
+                        width: Responsive.isDesktop(context) ? 200 : 200,
+                        height: Responsive.isDesktop(context) ? 50 : 50,
+                        fontsize: Responsive.isDesktop(context) ? 16 : 16,
+                      ),
+                    ),
+                  ],
                 ),
-                if (Responsive.isDesktop(context))
-                  SizedBox(height: defalutPadding),
-                Responsive(
-                  mobile: LaunchDownload2(
-                    url: cv_url,
-                    width: Responsive.isMobile(context) ? 150 : 200,
-                    height: Responsive.isMobile(context) ? 37 : 50,
-                    fontsize: Responsive.isMobile(context) ? 10 : 16,
-                  ),
-                  tablet: LaunchDownload2(
-                    url: cv_url,
-                    width: Responsive.isTablet(context) ? 100 : 200,
-                    height: Responsive.isTablet(context) ? 25 : 50,
-                    fontsize: Responsive.isTablet(context) ? 16 : 16,
-                  ),
-                  desktop: LaunchDownload2(
-                    url: cv_url,
-                    width: Responsive.isDesktop(context) ? 200 : 200,
-                    height: Responsive.isDesktop(context) ? 50 : 50,
-                    fontsize: Responsive.isDesktop(context) ? 16 : 16,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           )
         ],
       ),

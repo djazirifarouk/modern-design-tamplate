@@ -88,8 +88,7 @@ class LaunchDownload2 extends StatelessWidget {
             child: ElevatedButton(
               onPressed: openLink,
               style: TextButton.styleFrom(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: defalutPadding * 2, vertical: defalutPadding),
+                  padding: EdgeInsets.symmetric(horizontal: defalutPadding),
                   backgroundColor: primaryColor),
               child: Text(
                 "Download CV",
